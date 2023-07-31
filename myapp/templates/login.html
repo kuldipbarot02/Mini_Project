@@ -1,0 +1,114 @@
+{% extends 'header.html' %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .contactus-form-container{
+            margin-top: 25px;
+            background-color: gainsboro;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+        .container{
+            margin: 0 auto;
+            width: 1200px;
+        }
+
+        .contactus-heading{
+            text-align: center;
+            color: orangered;
+            padding-top: 2rem;
+        }
+
+        form{
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+            width: 50%;
+        }
+        .btn-area{
+            display: flex;
+            justify-content: center;
+        }
+        #btn{
+            width: 25%;
+            text-align: center;
+            margin-top: 6.5px;
+        }
+
+        .formfield-container{
+            width: 100%;
+        }
+
+        .formfield{
+            width: 100%;
+            height: 42px;
+            padding: 0 2rem;
+            font-size: 18px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 10px #1f1f1f;
+            border: none;
+            font-weight: 500;
+            margin: 10px;
+        }
+
+        .add{
+            text-align: center;
+            position: absolute;
+            top: 365px;
+            left: 961px;
+        }
+
+        .btn-info{
+            position: absolute;
+            top: 362px;
+            left: 690px;
+            color: aquamarine;
+        }
+     
+    </style>
+</head>
+<body>
+    <div class="contactus-form-container">
+        <div class="container">
+            <h1 class="contactus-heading">Login</h1>
+            {% if msg %}
+            <b style="color:blue;" class="add"> {{msg}} </b>
+            {% endif %}   
+
+            <div class="contactus-form-container">
+                <form action="{% url 'login' %}", method="post">
+                    {% csrf_token %}
+                    <div class="formfield-container">
+                        
+                        <label for="email">Email: </label>
+                        <input type="email" id="email" name="email" placeholder="Enter Your email address"  class="formfield">
+                        
+                        <label for="password">Password</label>
+                        <input type="password" name='password' id="password" placeholder="Please Enter Your Password" class="formfield">
+                        
+                        
+                        <div class="btn-area">
+                            <button id="btn" class="btn btn-primary">Submit</button>
+                            <a href="{% url 'forgot-password'%}"><input type="button" value="Forgot
+                                Password" class="btn btn-info">
+
+                            </a>
+                        </div>
+                    </div>
+               </form>
+            </div>
+        </div>
+     </div>
+</body>
+</html>
+
+{% endblock %}
